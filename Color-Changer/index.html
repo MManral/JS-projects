@@ -4,18 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="customjs.js"></script>
+    <script src="script.js" type="text/javascript"></script>
     <title>JS Project 1</title>
 </head>
 <body>
     <div class="canvas">
-    <h1>Color Switcher</h1>
+    <h1 class="title">Color Switcher</h1>
    
     <span class="button" id="blue"></span>
     <span class="button" id="green"></span>
     <span class="button" id="red"></span>
     <span class="button" id="white"></span>
+    <span class="button" id="purple"></span>
 </div>
 <h2>Click any of the color to change the background color</h2>
 </body>
+<script>
+    const buttons = document.querySelectorAll('.button')
+// console.log(buttons);
+const body = document.querySelector('body')
+const title = document.querySelector('.title')
+// console.log(body);
+buttons.forEach(function(btn){
+    // console.log(btn);
+    btn.addEventListener('click', function(e){
+        console.log(e);
+        console.log(e.target);
+        switch(e.target.id){
+            case "blue":
+                body.style.backgroundColor = "blue"
+                title.textContent = "Color is Blue"
+                title.style.color = "white"
+                break;
+            case "green":
+            body.style.backgroundColor = "green"
+            title.textContent = "Color is Green"
+                title.style.color = "white"
+            break;
+            case "red":
+                body.style.backgroundColor = "red"
+                title.textContent = "Color is Red"
+                title.style.color = "white"
+                break;
+            case "purple":
+            body.style.backgroundColor = "purple"
+            title.textContent = "Color is Purple"
+            title.style.color = "white"
+            break;
+            default:
+                body.style.backgroundColor = "white"
+                title.textContent = "Color is White"
+                title.style.color = "black"
+                break;
+        }
+    })
+})
+</script>
 </html>
