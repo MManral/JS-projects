@@ -1,0 +1,31 @@
+body{
+    background-color: grey;
+    font-family:Arial, Helvetica, sans-serif
+}
+.container{
+    text-align: center;
+}
+p{
+    margin-top: 20px;
+}
+input{
+    padding: 10px;
+}
+label{
+    margin-right: 30px;
+    font-weight: 600;
+}
+button{
+    padding: 10px;
+    width: 8rem;
+    font-weight: 600;
+    font-size: large;
+}
+#weightguide{
+    font-weight: 500;
+}
+.result{
+    padding-top: 20px;
+    font-size: 19px;
+    font-weight: 500;
+}
