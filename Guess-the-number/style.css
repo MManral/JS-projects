@@ -1,0 +1,20 @@
+body{
+    background-color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+.text{
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+#inputvalue{
+    padding: 20px;
+}
+.inputform{
+    text-align: center;
+}
