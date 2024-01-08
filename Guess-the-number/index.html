@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <title>Guess the number</title>
 </head>
 <body>
@@ -13,10 +14,107 @@
     </div>
     <form class="inputform">
         <p><input type="text" name="" id="inputvalue"></p>
-        <button>Submit</button>
+        <button type="submit" class="submit" value="submit guess">Submit</button>
     </form>
+    <div class="resultParas">
+        <p>Previous Guesses: <span class="guesses"></span></p>
+        <p>Guesses Remaining: <span class="lastresult">10</span></p>
+        <p class="lowOrHi"></p>
+    </div>
 </body>
 <script>
+let randomNO = parseInt(Math.random() * 100 + 1);
+const submit = document.querySelector('.submit');
+const userinpt = document.querySelector('#inputvalue');
+const guesses = document.querySelector('.guesses');
+const lastresult = document.querySelector('.lastresult');
+const lowOrHi = document.querySelector('.lowOrHi');
+const startover = document.querySelector('.resultParas');
+const p = document.createElement('p')
+
+let prevGuess = []
+let numGuess = 1
+let playGame = true
+
+if(playGame){
+    submit.addEventListener('click', function(e){
+        e.preventDefault()
+      const guess = parseInt(userinpt.value)
+    //   console.log(guess);
+      validateguess(guess)
+    })
+}
+
+function validateguess(guess){
+if(isNaN(guess)){
+    alert('please enter a valid number')
+}
+else if (guess < 1){
+    alert('please enter a value greater than 1')
+}
+else if (guess > 100){
+    alert('please enter a value less than 100')
+}
+else{
+    prevGuess.push(guess)
+    if(numGuess === 11){
+        displayGuess(guess)
+        displayMessage(`Game Over. Random no was ${randomNO}`)
+        endGame()
+    }
+    else{
+        displayGuess(guess)
+        checkguess(guess)
+    }
+}
+}
+function checkguess(guess){
+    if(guess === randomNO){
+        displayMessage(`correct guess`)
+        endGame()
+    }
+    else if (guess < randomNO){
+        displayMessage(`No is too low`)
+    }
+    else if (guess > randomNO){
+        displayMessage(`No is too high`)
+    }
+
+}
+
+function displayGuess(guess){
+userinpt.value = ''
+guesses.innerHTML += `${guess},` //adding + with equal will hold the previous value as along with new
+numGuess++;
+lastresult.innerHTML = `${11 - numGuess}`
+}
+
+function displayMessage(msg){
+lowOrHi.innerHTML = `<h2>${msg}</h2>`
+}
+function endGame(){
+    userinpt.value = ''
+    userinpt.setAttribute('disabled','')
+    p.classList.add('button')
+    p.innerHTML = `<h2 id="newGame">Start new Game</h2>`
+    startover.appendChild(p)
+    playGame = false
+    newGame();
+}
+function newGame(){
+const newGame = document.querySelector('#newGame')
+newGame.addEventListener('click', function(e){
+    randomNO = parseInt(Math.random() * 100 + 1);
+    prevGuess = []
+    numGuess = 1
+    guesses.innerHTML = ''
+    lastresult.innerHTML = `${11 - numGuess}`;
+    userinpt.removeAttribute('disabled')
+    startover.removeChild(p)
+    playGame = true;
+})
+}
+
 
 </script>
 </html>
